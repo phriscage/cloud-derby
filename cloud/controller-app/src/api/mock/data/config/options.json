@@ -1,0 +1,4 @@
+{
+  "ballColors": ["red", "blue", "green", "yellow"],
+  "drivingModes": ["auto", "manual", "debug"]
+}

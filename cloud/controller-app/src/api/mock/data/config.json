@@ -1,0 +1,8 @@
+{
+  "ballColor": "blue",
+  "currentDrivingMode": "manual",
+  "listenerStatus": true,
+  "commandTopic": "abc",
+  "sensorSubscription": "xyz",
+  "carId": "12345"
+}

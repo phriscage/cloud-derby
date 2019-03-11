@@ -1,0 +1,6 @@
+{
+  "clientId": null,
+  "clientSecret": null,
+  "apiBaseUrl": "http://localhost:8080/api",
+  "authBaseUrl": "https://oidc/auth"
+}

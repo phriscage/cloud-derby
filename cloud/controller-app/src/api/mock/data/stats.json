@@ -1,0 +1,7 @@
+{
+  "totalErrors": 1,
+  "totalMessagesSent": 2,
+  "totalMessagesReceived": 3,
+  "rejectedFormatMessages": 4,
+  "rejectedOutOfOrderMessages": 5
+}
