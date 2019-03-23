@@ -58,5 +58,8 @@ export default {
   },
   updateSettings(payload) {
     return update(payload, 100); // wait 100ms before returning
+  },
+  resetSettings() {
+    return get(settings, 100); // wait 100ms before returning
   }
 };

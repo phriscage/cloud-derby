@@ -23,7 +23,7 @@
           <div>
             <div class="headline">
               Session ID:
-              <span class="grey--text">{{ settings.sessionId }}</span>
+              <span class="grey--text">{{ $session.id() }}</span>
             </div>
           </div>
         </v-card-title>
@@ -65,6 +65,7 @@
               required
             ></v-text-field>
             <v-btn :disabled="!isFormDirty" @click="update">update</v-btn>
+            <v-btn @click="reset">reset</v-btn>
           </form>
         </v-card-text>
       </v-card>
@@ -142,6 +143,13 @@ export default {
           return;
         }
         alert('Correct the errors!');
+      });
+    },
+    reset() {
+      console.log('reset clicked');
+      this.loading = true;
+      this.$store.dispatch('resetSettings').then(() => {
+        this.loading = false;
       });
     }
   }

@@ -34,8 +34,8 @@ export default new Vuex.Store({
     setDrivingMessage(state, drivingMessage) {
       state.drivingMessage = drivingMessage;
     },
-    // TODO this needs to be in vue-session this.$session
     setSettings(state, settings) {
+      this._vm.$session.set('settings', settings);
       state.settings = settings;
     }
   },
@@ -80,13 +80,28 @@ export default new Vuex.Store({
     },
     // Settings
     getSettings({ commit }) {
-      return client
-        .getSettings()
-        .then(settings => commit('setSettings', settings));
+      if (!this._vm.$session.exists()) {
+        this._vm.$session.start();
+      }
+      if (!this._vm.$session.get('settings')) {
+        return client
+          .getSettings()
+          .then(settings => commit('setSettings', settings));
+      }
+      return commit('setSettings', this._vm.$session.get('settings'));
     },
     updateSettings({ commit }, payload) {
       return client
         .updateSettings(payload)
+        .then(settings => commit('setSettings', settings));
+    },
+    resetSettings({ commit }) {
+      if (!this._vm.$session.exists()) {
+        this._vm.$session.start();
+      }
+      this._vm.$session.clear();
+      return client
+        .getSettings()
         .then(settings => commit('setSettings', settings));
     }
   }

@@ -7,6 +7,7 @@ import store from './store';
 
 import VueForm from 'vue-form';
 import '@/plugins/vuetify';
+import '@/plugins/vue-session';
 
 Vue.config.productionTip = false;
 
