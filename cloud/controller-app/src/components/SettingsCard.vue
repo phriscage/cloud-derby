@@ -29,40 +29,38 @@
         </v-card-title>
 
         <v-card-text>
-          <form>
+          <form @submit.prevent="update">
             <v-text-field
               v-model="settings.clientId"
               label="Client ID"
-              v-validate="'required|max:36'"
+              v-validate="`${settings.authBaseUrl ? 'required|max:36' : ''}`"
               :counter="36"
               :error-messages="errors.collect('clientId')"
               data-vv-name="clientId"
-              required
             ></v-text-field>
             <v-text-field
               v-model="settings.clientSecret"
               label="Client Secret"
-              v-validate="'required|max:36'"
+              v-validate="'max:36'"
               :counter="36"
               :error-messages="errors.collect('clientSecret')"
               data-vv-name="clientSecret"
-              required
             ></v-text-field>
             <v-text-field
               v-model="settings.apiBaseUrl"
               :placeholder="settings.apiBaseUrl"
               label="API Base URL"
+              v-validate="'required|max:2000'"
               :error-messages="errors.collect('apiBaseUrl')"
               data-vv-name="apiBaseUrl"
-              required
             ></v-text-field>
             <v-text-field
               v-model="settings.authBaseUrl"
               :placeholder="settings.authBaseUrl"
               label="Authorization Base URL"
+              v-validate="'max:2000'"
               :error-messages="errors.collect('authBaseUrl')"
               data-vv-name="authBaseUrl"
-              required
             ></v-text-field>
             <v-btn :disabled="!isFormDirty" @click="update">update</v-btn>
             <v-btn @click="reset">reset</v-btn>
@@ -94,7 +92,8 @@ export default {
       },
       custom: {
         clientId: {
-          required: () => 'Client ID can not be empty',
+          required: () =>
+            'Client ID is required if Authorization Base URL is provided',
           max: 'The clientId field may not be greater than 36 characters'
         },
         clientSecret: {
