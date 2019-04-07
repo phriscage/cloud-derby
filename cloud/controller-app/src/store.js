@@ -4,7 +4,7 @@ import client from 'api-client';
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   state: {
     config: {},
     configOptions: [],
@@ -13,6 +13,12 @@ export default new Vuex.Store({
     debugMessage: {},
     drivingMessage: {},
     settings: {}
+  },
+
+  getters: {
+    settings: state => {
+      return state.settings;
+    }
   },
 
   mutations: {
@@ -106,3 +112,5 @@ export default new Vuex.Store({
     }
   }
 });
+
+export default store;

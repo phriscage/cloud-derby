@@ -14,6 +14,9 @@ Vue.config.productionTip = false;
 // Enable vue-form
 Vue.use(VueForm);
 
+// Fetch and load the store settings
+store.dispatch('getSettings');
+
 new Vue({
   router,
   store,
