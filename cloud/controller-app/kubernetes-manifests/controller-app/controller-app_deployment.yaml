@@ -1,0 +1,19 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: controller-app
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: controller-app
+        version: v1
+    spec:
+      containers:
+        - name: controller-app
+          image: gcr.io/chrispage-dev/controller-app
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80

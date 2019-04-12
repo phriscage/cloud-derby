@@ -1,0 +1,10 @@
+apiVersion: skaffold/v1beta2
+kind: Config
+build:
+  artifacts:
+  - image: controller-app
+    context: .
+deploy:
+  kubectl:
+    manifests:
+    - ./kubernetes-manifests/controller-app/*.yaml
