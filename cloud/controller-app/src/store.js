@@ -4,13 +4,27 @@ import client from 'api-client';
 
 Vue.use(Vuex);
 
-function notify(type, response) {
+// set a custom notification template for all API calls
+function notify(error) {
+  var title, text, type;
+  var data = {};
+  if (!error.response) {
+    // network error
+    title = 'Network error has occured';
+    text = error;
+    type = 'error';
+  } else {
+    title = `${error.response.status}: ${error.response.statusText}`;
+    text = error.response.data;
+    data = error.response;
+    type = 'warn';
+  }
   Vue.notify({
     group: 'main',
-    title: `${response.status}: ${response.statusText}`,
-    text: response.data,
+    title: title,
+    text: text,
     type: type,
-    data: response
+    data: data
   });
 }
 
@@ -63,7 +77,7 @@ const store = new Vuex.Store({
         .getConfig()
         .then(config => commit('setConfig', config))
         .catch(error => {
-          notify('warn', error.response);
+          notify(error);
         });
     },
     updateConfig({ commit }, payload) {
@@ -71,7 +85,7 @@ const store = new Vuex.Store({
         .updateConfig(payload)
         .then(config => commit('setConfig', config))
         .catch(error => {
-          notify('warn', error.response);
+          notify(error);
         });
     },
     // ConfigOptions
@@ -80,7 +94,7 @@ const store = new Vuex.Store({
         .getConfigOptions()
         .then(configOptions => commit('setConfigOptions', configOptions))
         .catch(error => {
-          notify('warn', error.response);
+          notify(error);
         });
     },
     // Stats
@@ -89,7 +103,7 @@ const store = new Vuex.Store({
         .getStats()
         .then(stats => commit('setStats', stats))
         .catch(error => {
-          notify('warn', error.response);
+          notify(error);
         });
     },
     // Messages
@@ -98,7 +112,7 @@ const store = new Vuex.Store({
         .getMessages()
         .then(messages => commit('setMessages', messages))
         .catch(error => {
-          notify('warn', error.response);
+          notify(error);
         });
     },
     // DebugMessages
@@ -107,7 +121,7 @@ const store = new Vuex.Store({
         .createDebugMessage()
         .then(debugMessage => commit('setDebugMessage', debugMessage))
         .catch(error => {
-          notify('warn', error.response);
+          notify(error);
         });
     },
     // DrivingMessages
@@ -116,7 +130,7 @@ const store = new Vuex.Store({
         .createDrivingMessage()
         .then(drivingMessage => commit('setDrivingMessage', drivingMessage))
         .catch(error => {
-          notify('warn', error.response);
+          notify(error);
         });
     },
     // Settings
@@ -129,7 +143,7 @@ const store = new Vuex.Store({
           .getSettings()
           .then(settings => commit('setSettings', settings))
           .catch(error => {
-            notify('warn', error.response);
+            notify(error);
           });
       }
       return commit('setSettings', this._vm.$session.get('settings'));
@@ -139,7 +153,7 @@ const store = new Vuex.Store({
         .updateSettings(payload)
         .then(settings => commit('setSettings', settings))
         .catch(error => {
-          notify('warn', error.response);
+          notify(error);
         });
     },
     resetSettings({ commit }) {
@@ -151,7 +165,7 @@ const store = new Vuex.Store({
         .getSettings()
         .then(settings => commit('setSettings', settings))
         .catch(error => {
-          notify('warn', error.response);
+          notify(error);
         });
     }
   }

@@ -105,6 +105,7 @@ export default {
   .custom-template-content {
     padding: 10px;
     flex: 1 0 auto;
+    color: white;
     .custom-template-title {
       letter-spacing: 1px;
       text-transform: uppercase;
