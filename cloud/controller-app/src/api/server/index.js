@@ -7,7 +7,6 @@ export default {
     return store.getters.settings.apiBaseUrl;
   },
   getConfig() {
-    console.log(this._apiBaseUrl());
     return axios
       .get(this._apiBaseUrl() + '/config')
       .then(response => response.data);
