@@ -8,6 +8,7 @@ import store from './store';
 import VueForm from 'vue-form';
 import '@/plugins/vuetify';
 import '@/plugins/vue-session';
+import '@/plugins/vue-notification';
 
 Vue.config.productionTip = false;
 

@@ -1,6 +1,7 @@
 <template>
   <v-app id="app">
     <Header></Header>
+    <Notification></Notification>
     <v-content>
       <v-container fluid fill-height>
         <v-layout justify-center align-center>
@@ -17,12 +18,14 @@
 <script>
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
+import Notification from '@/components/Notification.vue';
 
 export default {
   name: 'app',
   components: {
     Header,
-    Footer
+    Footer,
+    Notification
   },
   data: () => ({
     drawer: false,
