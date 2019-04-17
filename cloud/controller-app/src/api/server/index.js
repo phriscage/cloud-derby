@@ -2,6 +2,8 @@ import store from './../../store';
 import axios from 'axios';
 import mock from './../mock';
 
+axios.defaults.headers.common['Accept'] = 'application/json';
+
 export default {
   _apiBaseUrl() {
     return store.getters.settings.apiBaseUrl;

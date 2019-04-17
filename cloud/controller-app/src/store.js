@@ -8,16 +8,16 @@ Vue.use(Vuex);
 function notify(error) {
   var title, text, type;
   var data = {};
-  if (!error.response) {
-    // network error
-    title = 'Network error has occured';
-    text = error;
-    type = 'error';
-  } else {
+  if (error.response) {
     title = `${error.response.status}: ${error.response.statusText}`;
     text = error.response.data;
     data = error.response;
     type = 'warn';
+  } else {
+    // network error
+    title = 'Network error has occured';
+    text = error;
+    type = 'error';
   }
   Vue.notify({
     group: 'main',
