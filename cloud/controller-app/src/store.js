@@ -15,7 +15,7 @@ function notify(error) {
     type = 'warn';
   } else {
     // network error
-    title = 'Network error has occured';
+    title = 'Network or Content error';
     text = error;
     type = 'error';
   }
