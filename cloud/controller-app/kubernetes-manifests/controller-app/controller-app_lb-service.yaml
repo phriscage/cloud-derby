@@ -10,7 +10,7 @@ spec:
   ports:
     - port: 8080
       name: http
-      targetPort: 80
+      targetPort: 8080
   selector:
     app: controller-app
     version: v1

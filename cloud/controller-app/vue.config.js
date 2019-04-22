@@ -1,6 +1,9 @@
 const path = require('path')
 
 module.exports = {
+  publicPath: process.env.BUCKET_NAME
+    ? `/${process.env.BUCKET_NAME}/`
+    : '/',
   chainWebpack: config => {
     if (process.env.NODE_ENV === 'production' || process.env.VUE_APP_APICLIENT == 'server') {
         // mutate config for production...
