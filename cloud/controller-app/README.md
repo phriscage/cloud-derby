@@ -4,10 +4,10 @@ This documentation provides details for how to develop, build, and deploy new ve
 * [Prerequisites](#prereqs)
   * [Setup Backend API](#setup_backend)
 * [Develop](#develop)
-  * [Setup Node](#setup_node)<mark>Preferred</mark>
+  * [Setup Node](#setup_node) <mark>preferred</mark>
   * [Setup Minikube](#setup_minikube)
 * [Build and Deploy](#build_and_deploy)
-  * [Deploy Cloud Run](#deploy_cloud_run)<mark>Preferred</mark>
+  * [Deploy Cloud Run](#deploy_cloud_run) <mark>preferred</mark>
   * [Deploy Cloud Storage](#deploy_cloud_storage)
   * [Deploy App Engine](#deploy_app_engine)
   * [Deploy Kubernetes](#deploy_kubernetes)
@@ -23,8 +23,8 @@ Controller REST API setup is a dependency for the Controller App if you do not p
     TBD
 
 
-## <a name="develop">develop</a>
-You can develop the Controller App either locally or in the cloud. [NPM](https://www.npmjs.com/) can run in a stand-alone mode or in a [Kubernetes](https://kubernetes.io/) environment via [Skaffold](https://github.com/GoogleContainerTools/skaffold).
+## <a name="develop">Develop</a>
+You can develop the Controller App either locally or in the cloud. [NodeJS](https://nodejs.org/en/) can run in a stand-alone mode for development or in a [Kubernetes](https://kubernetes.io/) environment. Stand-alone is typically frictionless and the <mark>preferred</mark> method.
 
 
 ### <a name="setup_node">Setup Node</a>
@@ -52,7 +52,7 @@ Point your browser to http://localhost:8080
 
 
 ### <a name="setup_minikube">Setup Minikube</a>
-These instructions to setup a local k8s environment via the [minikube](https://kubernetes.io/docs/setup/minikube/). You can also setup a cloud k8s environment via the GKE via *gcloud* SDK CLI or GCP *console*. Skaffold will reload for every file change in the directory. This can become a painful and long developer experience so is typcially not recommended.
+These instructions to setup a local k8s environment via the [minikube](https://kubernetes.io/docs/setup/minikube/). You can also setup a cloud k8s environment via the GKE via *gcloud* SDK CLI or GCP *console*. [Skaffold](https://github.com/GoogleContainerTools/skaffold) will reload for every file change in the directory. This can become a painful and long developer experience so is typcially not recommended.
 
 Start minikube:
 
@@ -72,10 +72,12 @@ Point your browser to $GATEWAY_URL
 ## <a name="build_and_deploy">Build and Deploy</a>
 You can build and deploy via various methods below based off developer preference and/or environment. These are the options available:
 
-  * [Google Cloud Run](https://cloud.google.com/run/) with [gcloud](https://cloud.google.com/sdk/)
+  * [Google Cloud Run](https://cloud.google.com/run/) via [gcloud](https://cloud.google.com/sdk/)
   * [Google Cloud Storage](https://cloud.google.com/storage) via [gsutil](https://cloud.google.com/storage/docs/gsutil),
-  * [Google Cloud App Engine](https://cloud.google.com/appengine/) with [Deployment Manager](https://cloud.google.com/deployment-manager/) - TODO
-  * [Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine/) vi [Skaffold](https://github.com/GoogleContainerTools/skaffold).
+  * [Google Cloud App Engine](https://cloud.google.com/appengine/) via [Deployment Manager](https://cloud.google.com/deployment-manager/) and gcloud - TODO
+  * [Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine/) via [Skaffold](https://github.com/GoogleContainerTools/skaffold).
+
+Google Cloud Run is the <mark>preferred</mark> method to quickly host the Controller App content and generate a unique URL for consumption.
 
 There are some environment variables that need to be set for all build and deployment options.
 
@@ -89,7 +91,7 @@ Export the image/build *TAG* environment variable:
 
 
 ### <a name="deploy_cloud_run">Deploy Cloud Run</a>
-Deploy with [Cloud Run (Beta)](https://cloud.google.com/run/) allows stateless HTTP containers on a fully managed environment or GKE cluster. [Cloud Build](https://cloud.google.com/run/docs/quickstarts/build-and-deploy#containerizing) packages the Docker image into your Google Container repository.
+Deploy with Cloud Run allows stateless HTTP containers on a fully managed environment or GKE cluster. [Cloud Build](https://cloud.google.com/run/docs/quickstarts/build-and-deploy#containerizing) packages the Docker image into your Google Container repository.
 _Cloud Run and Cloud Build APIs will need to be enabled in your GCP project._
 
 Build with Cloud Build and TAG:
@@ -107,7 +109,7 @@ Open the app URL in your browser
 
 
 ### <a name="deploy_cloud_storage">Deploy Cloud Storage</a>
-Deploy the application with Google [Cloud Storage](https://cloud.google.com/storage) via [gsutil](https://cloud.google.com/storage/docs/gsutil). Cloud Storage is a create service to provide geo-graphically distributed static content. You can follow [this](https://cloud.google.com/storage/docs/hosting-static-website) documentation that outlines using a custom domain, but Storage buckets are also accessible via [APIs](https://storage.googleapis.com). Below is the 2nd option if custom domain is not available:
+Deploy the application with Google Cloud Storage via gsutil. Cloud Storage is a create service to provide geo-graphically distributed static content. You can follow [this](https://cloud.google.com/storage/docs/hosting-static-website) documentation that outlines using a custom domain, but Storage buckets are also accessible via [APIs](https://storage.googleapis.com). Below is the 2nd option if custom domain is not available:
 
 Build the image with the `npm run build` command:
 
@@ -136,7 +138,7 @@ Open your browser to [https://storage.googleapis.com](https://storage.googleapis
 TBD
 
 ### <a name="deploy_kubernetes">Deploy Kubernetes</a>
-These instructions are to build and deploy in a k8s environment via [Skaffold](https://github.com/GoogleContainerTools/skaffold).
+These instructions are to build and deploy in a k8s environment via Skaffold.
 
 Set the default GCR project repository:
 
