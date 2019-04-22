@@ -4,10 +4,10 @@ This documentation provides details for how to develop, build, and deploy new ve
 * [Prerequisites](#prereqs)
   * [Setup Backend API](#setup_backend)
 * [Develop](#develop)
-  * [Setup Node](#setup_node) <mark>preferred</mark>
+  * [Setup Node](#setup_node)
   * [Setup Minikube](#setup_minikube)
 * [Build and Deploy](#build_and_deploy)
-  * [Deploy Cloud Run](#deploy_cloud_run) <mark>preferred</mark>
+  * [Deploy Cloud Run](#deploy_cloud_run)
   * [Deploy Cloud Storage](#deploy_cloud_storage)
   * [Deploy App Engine](#deploy_app_engine)
   * [Deploy Kubernetes](#deploy_kubernetes)
@@ -24,7 +24,7 @@ Controller REST API setup is a dependency for the Controller App if you do not p
 
 
 ## <a name="develop">Develop</a>
-You can develop the Controller App either locally or in the cloud. [NodeJS](https://nodejs.org/en/) can run in a stand-alone mode for development or in a [Kubernetes](https://kubernetes.io/) environment. Stand-alone is typically frictionless and the <mark>preferred</mark> method.
+You can develop the Controller App either locally or in the cloud. [NodeJS](https://nodejs.org/en/) can run in a stand-alone mode for development or in a [Kubernetes](https://kubernetes.io/) environment. Stand-alone [Setup Node](#setup_node) is typically frictionless and the _preferred_ method.
 
 
 ### <a name="setup_node">Setup Node</a>
@@ -77,7 +77,7 @@ You can build and deploy via various methods below based off developer preferenc
   * [Google Cloud App Engine](https://cloud.google.com/appengine/) via [Deployment Manager](https://cloud.google.com/deployment-manager/) and gcloud - TODO
   * [Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine/) via [Skaffold](https://github.com/GoogleContainerTools/skaffold).
 
-Google Cloud Run is the <mark>preferred</mark> method to quickly host the Controller App content and generate a unique URL for consumption.
+[Deploy Cloud Run](#deploy_cloud_run) is the _preferred_ method to quickly host the Controller App content and generate a unique URL for consumption.
 
 There are some environment variables that need to be set for all build and deployment options.
 
