@@ -11,20 +11,17 @@
         </v-layout>
       </v-container>
     </v-content>
-    <Footer></Footer>
   </v-app>
 </template>
 
 <script>
 import Header from '@/components/Header.vue';
-import Footer from '@/components/Footer.vue';
 import Notification from '@/components/Notification.vue';
 
 export default {
   name: 'app',
   components: {
     Header,
-    Footer,
     Notification
   },
   data: () => ({

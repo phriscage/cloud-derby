@@ -39,7 +39,13 @@
         </template>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar color="blue darken-2" dark :clipped-left="clipped" app>
+    <v-toolbar
+      color="blue darken-2"
+      :clipped-left="clipped"
+      height="48"
+      dark
+      app
+    >
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title>{{ toolbar.title }}</v-toolbar-title>
       <v-spacer></v-spacer>
