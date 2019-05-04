@@ -24,11 +24,6 @@ export default {
     Header,
     Notification
   },
-  data: () => ({
-    drawer: false,
-    clipped: true
-  }),
-
   props: {
     source: String
   }

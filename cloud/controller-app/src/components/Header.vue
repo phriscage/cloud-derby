@@ -1,11 +1,11 @@
 <template>
   <div>
     <v-navigation-drawer
-      v-model="drawer"
-      :clipped="clipped"
+      v-model="drawer.open"
+      :clipped="drawer.clipped"
       width="210"
-      fixed
-      persistent
+      :temporary="drawer.temporary"
+      :fixed="drawer.fixed"
       app
     >
       <v-list dense>
@@ -41,12 +41,14 @@
     </v-navigation-drawer>
     <v-toolbar
       color="blue darken-2"
-      :clipped-left="clipped"
+      :clipped-left="toolbar.clipped"
       height="48"
       dark
       app
     >
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+      <v-toolbar-side-icon
+        @click.stop="drawer.open = !drawer.open"
+      ></v-toolbar-side-icon>
       <v-toolbar-title>{{ toolbar.title }}</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
@@ -60,9 +62,14 @@
 export default {
   name: 'app-header',
   data: () => ({
-    drawer: false,
-    clipped: true,
+    drawer: {
+      open: false,
+      clipped: true,
+      temporary: false,
+      fixed: true
+    },
     toolbar: {
+      clipped: true,
       title: 'Cloud Derby Driving Controller'
     },
     navigationBar: {
