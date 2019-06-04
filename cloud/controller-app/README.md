@@ -105,7 +105,9 @@ Deploy with Cloud Run Beta:
       --region=us-central1 \
       --allow-unauthenticated
 
-Open the app URL in your browser
+Open the app URL in your browser. You can return the FQDN via:
+
+    gcloud beta run services describe controller-app --format="value(status.domain)"
 
 
 ### <a name="deploy_cloud_storage">Deploy Cloud Storage</a>
