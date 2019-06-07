@@ -62,6 +62,7 @@
             <v-switch
               v-model="config.listenerStatus"
               label="Listener Status"
+              v-validate="'required'"
               :checked="config.listenerStatus"
               :error-messages="errors.collect('listenerStatus')"
               data-vv-name="listenerStatus"

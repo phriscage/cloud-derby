@@ -83,7 +83,10 @@ const store = new Vuex.Store({
     updateConfig({ commit }, payload) {
       return client
         .updateConfig(payload)
-        .then(config => commit('setConfig', payload)) // updateConfig does not return data when successful
+        .then(config => {
+          config = payload;
+          commit('setConfig', config);
+        })
         .catch(error => {
           notify(error);
         });

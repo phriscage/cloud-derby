@@ -5,12 +5,15 @@ import mock from './../mock';
 // set the default Accept header to application/json
 axios.defaults.headers.common['Accept'] = 'application/json';
 
-var validContentTypes = ['application/json', 'application/json; charset=utf-8'];
+// set the default validContentTypes
+const validContentTypes = [
+  'application/json',
+  'application/json; charset=utf-8'
+];
 
 // reject anything that is not application/json
 axios.interceptors.response.use(
   response => {
-    console.log('response: ', response);
     return validContentTypes.includes(response.headers['content-type'])
       ? response.data
       : Promise.reject('Content-Type: application/json is required');
