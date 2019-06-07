@@ -59,14 +59,14 @@ export default {
       .get(this._apiBaseUrl() + '/messages')
       .then(response => response.data);
   },
-  createDebugMessage() {
+  createDebugMessage(payload) {
     return axios
-      .post(this._apiBaseUrl() + '/messages/debug')
+      .post(this._apiBaseUrl() + '/messages/debug', payload)
       .then(response => response.data);
   },
-  createDrivingMessage() {
+  createDrivingMessage(payload) {
     return axios
-      .post(this._apiBaseUrl() + '/messages/driving')
+      .post(this._apiBaseUrl() + '/messages/driving', payload)
       .then(response => response.data);
   },
   // default to the mock which is just a static config load

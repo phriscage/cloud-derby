@@ -119,18 +119,18 @@ const store = new Vuex.Store({
         });
     },
     // DebugMessages
-    createDebugMessage({ commit }) {
+    createDebugMessage({ commit }, payload) {
       return client
-        .createDebugMessage()
+        .createDebugMessage(payload)
         .then(debugMessage => commit('setDebugMessage', debugMessage))
         .catch(error => {
           notify(error);
         });
     },
     // DrivingMessages
-    createDrivingMessage({ commit }) {
+    createDrivingMessage({ commit }, payload) {
       return client
-        .createDrivingMessage()
+        .createDrivingMessage(payload)
         .then(drivingMessage => commit('setDrivingMessage', drivingMessage))
         .catch(error => {
           notify(error);

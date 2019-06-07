@@ -65,10 +65,12 @@ export default {
     form() {
       return {
         sendCommand: {
-          placeholder: false
+          placeholder: false,
+          value: false
         },
         nextSensorMessage: {
-          placeholder: false
+          placeholder: false,
+          value: false
         }
       };
     },
@@ -76,34 +78,6 @@ export default {
       // v-switch does not support dirty flag
       //return Object.keys(this.fields).some(key => this.fields[key].dirty);
       return true;
-    }
-  },
-
-  methods: {
-    // work-around to clear out all errors if any value is true
-    anyFormValuesTrue() {
-      return Object.keys(this.form).some(key => this.form[key].value === true);
-    },
-    input() {
-      if (this.anyFormValuesTrue() && this.errors.any()) {
-        console.log('clearing errors');
-        this.errors.clear();
-      }
-    },
-    submit() {
-      console.log('submit clicked');
-      this.$validator.validateAll().then(result => {
-        // console.log(this.form);
-        // success
-        if (result) {
-          this.loading = true;
-          this.$store.dispatch('createDebugMessage').then(() => {
-            this.loading = false;
-            console.log(this.$store.state.debugMessage);
-          });
-          return;
-        }
-      });
     }
   },
 
@@ -122,6 +96,40 @@ export default {
         });
       }
     });
+  },
+
+  methods: {
+    // work-around to clear out all errors if any value is true
+    anyFormValuesTrue() {
+      return Object.keys(this.form).some(key => this.form[key].value === true);
+    },
+    formValues() {
+      return Object.keys(this.form).all(key => this.form[key].value);
+    },
+    input() {
+      if (this.anyFormValuesTrue() && this.errors.any()) {
+        console.log('clearing errors');
+        this.errors.clear();
+      }
+    },
+    submit() {
+      console.log('submit clicked');
+      this.$validator.validateAll().then(result => {
+        console.log(this.form);
+        var payload = Object.fromEntries(
+          Object.entries(this.form).map(([k, v]) => [k, v.value])
+        );
+        // success
+        if (result) {
+          this.loading = true;
+          this.$store.dispatch('createDebugMessage', payload).then(() => {
+            this.loading = false;
+            console.log(this.$store.state.debugMessage);
+          });
+          return;
+        }
+      });
+    }
   }
 };
 </script>
