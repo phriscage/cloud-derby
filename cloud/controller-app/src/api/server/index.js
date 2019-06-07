@@ -5,19 +5,21 @@ import mock from './../mock';
 // set the default Accept header to application/json
 axios.defaults.headers.common['Accept'] = 'application/json';
 
+var validContentTypes = ['application/json', 'application/json; charset=utf-8'];
+
 // reject anything that is not application/json
 axios.interceptors.response.use(
   response => {
     console.log('response: ', response);
-    return response.headers['content-type'] === 'application/json'
-      ? response
+    return validContentTypes.includes(response.headers['content-type'])
+      ? response.data
       : Promise.reject('Content-Type: application/json is required');
   },
   // 404 is considered an error
   error => {
     if (error.response) {
-      return error.response.headers['content-type'] === 'application/json'
-        ? error.response
+      return validContentTypes.includes(error.response.headers['content-type'])
+        ? error.response.data
         : Promise.reject('Content-Type: application/json is required');
     }
     // network error

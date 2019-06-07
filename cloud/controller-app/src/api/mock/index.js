@@ -26,7 +26,7 @@ const create = (time = 0) => {
 const update = (data, time = 0) => {
   return new Promise(resolve => {
     setTimeout(() => {
-      resolve(Object.assign({ id: uuid4() }, data));
+      resolve(data);
     }, time);
   });
 };
