@@ -151,7 +151,10 @@ export default {
       };
     },
     isFormDirty() {
-      return Object.keys(this.fields).some(key => this.fields[key].dirty);
+      // v-switch does not support dirty flag... disabling for now.
+      // https://github.com/vuetifyjs/vuetify/issues/5230
+      //return Object.keys(this.fields).some(key => this.fields[key].dirty);
+      return true;
     }
   },
 
