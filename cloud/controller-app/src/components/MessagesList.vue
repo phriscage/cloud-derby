@@ -41,26 +41,16 @@
                 :key="messageIndex"
                 avatar
               >
-                <v-list-tile-content>
+                <v-list-tile-content :style="{ 'align-items': 'center' }">
                   <v-list-tile-sub-title>
                     {{ message }}
                   </v-list-tile-sub-title>
                 </v-list-tile-content>
 
                 <v-list-tile-action>
-                  <v-tooltip close-delay="1500" left>
-                    <template v-slot:activator="{ on }">
-                      <v-btn
-                        v-on="on"
-                        icon
-                        @click="toggle(message, messageIndex)"
-                        ripple
-                      >
-                        <v-icon color="grey lighten-1">info</v-icon>
-                      </v-btn>
-                    </template>
-                    <span>{{ message }}</span>
-                  </v-tooltip>
+                  <v-btn icon @click="toggle(message, messageIndex)" ripple>
+                    <v-icon color="grey lighten-1">info</v-icon>
+                  </v-btn>
                 </v-list-tile-action>
               </v-list-tile>
             </v-list-group>

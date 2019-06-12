@@ -163,10 +163,13 @@ export default {
       console.log('submit clicked');
       this.$validator.validateAll().then(result => {
         console.log(this.form);
+        var payload = Object.fromEntries(
+          Object.entries(this.form).map(([k, v]) => [k, v.value])
+        );
         // success
         if (result) {
           this.loading = true;
-          this.$store.dispatch('createDrivingMessage').then(() => {
+          this.$store.dispatch('createDrivingMessage', payload).then(() => {
             this.loading = false;
             console.log(this.$store.state.drivingMessage);
           });
